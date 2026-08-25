@@ -1,24 +1,24 @@
-# Paper Review Skill
+# 論文審閱技能
 
-A reusable Codex skill for close-reading research papers one section at a time and turning them into clear, structured, and critical review notes.
+這是一個可重複使用的 Codex 技能，能逐節精讀研究論文，並將內容整理成清楚、有條理且具批判性的審閱筆記。
 
-The skill reads the target paper as the primary source, explains equations and methods in context, separates author claims from interpretation and reviewer concerns, and adapts its output to the conventions already present in the workspace.
+此技能以目標論文為主要資料來源，結合上下文解釋公式與方法，區分作者主張、內容解讀及審閱者疑慮，並依循工作區中既有的輸出慣例。
 
-## What it supports
+## 支援功能
 
-- Section-by-section paper walkthroughs
-- System model and equation explanations
-- Method and algorithm reconstruction
-- Related-work comparisons
-- Experiment and ablation analysis
-- Paper-specific terminology research
-- Reviewer-oriented consistency checks
-- Gated chapter progression that waits for the reader before advancing
-- Formula-complete review of system models, optimization problems, algorithms, and simulations
+- 逐節導讀論文
+- 解釋系統模型與公式
+- 重建方法與演算法
+- 比較相關研究
+- 分析實驗與消融研究
+- 查證論文特定術語
+- 以審閱者角度檢查內容一致性
+- 採用分章確認流程，等待讀者同意後再繼續
+- 完整審閱系統模型、最佳化問題、演算法與模擬中的公式
 
-The default output language is Traditional Chinese. Existing repository conventions take precedence.
+預設輸出語言為繁體中文；若儲存庫已有其他慣例，則以既有慣例為優先。
 
-## Structure
+## 目錄結構
 
 ```text
 paper-review/
@@ -32,40 +32,36 @@ paper-review/
 └── README.md
 ```
 
-`SKILL.md` contains the shared workflow. `references/section-guide.md` is loaded only when a detailed chapter or full-paper review needs section-specific guidance.
-`references/technical-review.md` adds a strict completeness audit for formula-heavy and simulation-heavy sections.
+`SKILL.md` 包含共用工作流程。只有在詳細審閱單一章節或整篇論文、需要各章節的特定指引時，才會載入 `references/section-guide.md`。
+`references/technical-review.md` 則為公式密集與模擬密集的章節提供嚴格的完整性檢查。
 
-## Install locally
+## 本機安裝
 
-Clone or copy this repository into the Codex skills directory:
+將此儲存庫複製或下載至 Codex 的技能目錄：
 
 ```text
 $CODEX_HOME/skills/paper-review
 ```
 
-If `CODEX_HOME` is not set, use the skills directory under your local `.codex` home.
+若未設定 `CODEX_HOME`，請使用本機 `.codex` 主目錄下的技能目錄。
 
-Invoke it explicitly with a prompt such as:
+你可以使用以下提示詞明確啟用此技能：
 
 ```text
-Use $paper-review to explain the system model of this paper in Traditional Chinese.
+使用 $paper-review，以繁體中文解釋這篇論文的系統模型。
 ```
 
-The skill also allows implicit invocation for paper-review tasks.
+進行論文審閱相關任務時，也可以隱式啟用此技能。
 
-## Publish or upload
+## 設計原則
 
-The project root is already a complete skill directory. It can be archived as a ZIP without changing the folder structure. The [OpenAI Skills API](https://developers.openai.com/api/reference/python/resources/skills/methods/create) accepts a skill directory upload or a ZIP file.
+- 論文始終是主要資料來源。
+- 外部研究僅用於查證及釐清論文特定術語，不會取代論文本身。
+- 從語意層面解釋公式，包括變數、限制條件、物理意義及可能的不一致之處。
+- 清楚區分論文陳述、合理解讀與審閱者疑慮。
+- 以漸進方式記錄筆記，並保留先前已完成的內容。
+- 完成目前章節後即停止，只有在讀者明確確認後才繼續下一章節。
 
-## Design principles
-
-- The paper remains the primary source.
-- External research is used for verification and paper-specific terminology, not as a substitute for the paper.
-- Equations are explained semantically, including variables, constraints, physical meaning, and possible inconsistencies.
-- Paper statements, reasonable interpretations, and reviewer concerns are kept distinct.
-- Notes are incremental and preserve previously completed work.
-- The agent stops at the current section and advances only after explicit reader confirmation.
-
-## License
+## 授權條款
 
 MIT
